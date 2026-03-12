@@ -1,0 +1,80 @@
+{
+  "info": {
+    "_postman_id": "957d3d62-6192-4abf-8db6-894967ccc787",
+    "name": "Fee-Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10660040"
+  },
+  "item": [
+    {
+      "name": "collectFee",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"studentId\": 12,\r\n    \"studentName\": \"Raj Shekar\",\r\n    \"schoolName\": \"ABC Public School\",\r\n    \"grade\": \"1\",\r\n    \"cardType\": \"MASTER\",\r\n    \"cardNumber\": \"5123-4123-3214-4444\",\r\n    \"feeDescription\": \"First Term Fee\",\r\n    \"amount\": 5000\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/fee",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "fee"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "receipts/student",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/receipts/student/12",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "receipts",
+            "student",
+            "12"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Receipt pdf",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/receipts/student/12",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "receipts",
+            "student",
+            "12"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
