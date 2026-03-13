@@ -75,6 +75,35 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "getRecieptbyId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/receipts/student/12",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "receipts",
+            "student",
+            "12"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAllReceipts",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
     }
   ]
 }
