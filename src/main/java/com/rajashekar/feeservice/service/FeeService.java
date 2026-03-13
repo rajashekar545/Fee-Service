@@ -3,6 +3,9 @@ package com.rajashekar.feeservice.service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +17,22 @@ import com.rajashekar.feeservice.repository.ReceiptRepository;
 @Service
 public class FeeService {
 
+    private static final Logger logger = LogManager.getLogger(FeeService.class);
+
     @Autowired
-    private ReceiptRepository receiptRepository;  
-    
+    private ReceiptRepository receiptRepository;
+
     @Autowired
-    private StudentClientService studentClientService;    
+    private StudentClientService studentClientService;
 
     public Receipt collectFee(CollectFeeRequest request) {
 
-    	StudentResponse student = studentClientService.getStudentById(request.getStudentId());
-    	
+        logger.info("Fee collection started for studentId: {}", request.getStudentId());
+
+        StudentResponse student = studentClientService.getStudentById(request.getStudentId());
+
+        logger.info("Student fetched successfully: {}", student.getStudentName());
+
         Receipt receipt = new Receipt();
         receipt.setStudentId(student.getStudentId());
         receipt.setStudentName(student.getStudentName());
@@ -40,9 +49,12 @@ public class FeeService {
         receipt.setDateTime(LocalDateTime.now());
         receipt.setStatus("SUCCESS");
 
-        return receiptRepository.save(receipt);
+        logger.info("Saving receipt for studentId: {}", student.getStudentId());
+
+        Receipt savedReceipt = receiptRepository.save(receipt);
+
+        logger.info("Receipt generated successfully. ReferenceNumber: {}", savedReceipt.getReferenceNumber());
+
+        return savedReceipt;
     }
-    
-   
-    
 }
